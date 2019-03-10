@@ -11,28 +11,25 @@ import org.springframework.stereotype.Service;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Date;
 
 @Service
 public class GenerateJsonService {
 
     Logger log = LoggerFactory.getLogger(GenerateJsonService.class);
 
-    private Date date = new Date();
-
     public void saveDataInFile(Student student, int priority) {
-        log.info("START GENERATE FILE");
+        log.info("START WRITE TO FILE");
         BufferedWriter writer = null;
         try {
             writer = new BufferedWriter(new FileWriter("test_data_" + priority + ".json", true));
-            writer.append(' ');
-            writer.append(toJson(student));
-            writer.append(',');
-            writer.close();
+            writer.append(' ')
+                    .append(toJson(student))
+                    .append(',')
+                    .close();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Something wrong during write json to file", e);
         }
-        log.info("END GENERATE FILE");
+        log.info("END WRITE TO FILE");
     }
 
     private String toJson(Student student) {

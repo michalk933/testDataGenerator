@@ -15,9 +15,9 @@ public class GenerateFileController {
     @Autowired
     private GenerateStudentService generateStudentService;
 
-    @PostMapping("/{student}/{hobby}/{prioryti}")
-    public Mono<String> generate(@PathVariable("student") int student, @PathVariable("hobby") int hobby, @PathVariable("prioryti") int prioryti){
-        generateStudentService.generate(student, hobby, prioryti);
+    @PostMapping("/{student}/{hobby}/{priority}")
+    public Mono<String> generate(@PathVariable("student") int student, @PathVariable("hobby") int hobby, @PathVariable("priority") int priority){
+        generateStudentService.generate(student, hobby, priority);
         return Mono.just("Make");
     }
 
